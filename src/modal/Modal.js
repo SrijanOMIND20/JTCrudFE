@@ -71,9 +71,9 @@ const CustomModal = ({open,close,data,firstName,lastName,date}) =>{
           </Typography>
                 {
                     <div>
-                        <TextField id='outlined-required' label='First Name' variant='standard' onChange={handleFirstname} defaultValue={firstName} />
-                        <TextField id='outlined-required' label='Last Name' variant='standard' onChange={handleLastname} defaultValue={lastName} />
-                        <TextField id='outlined-required' label='Date Of Birth' variant='standard' onChange={handleDOB} defaultValue={date} />
+                        <TextField id='outlined-required' label='First Name' variant='standard' onChange={handleFirstname} defaultValue={data.firstName} />
+                        <TextField id='outlined-required' label='Last Name' variant='standard' onChange={handleLastname} defaultValue={data.lastName} />
+                        <TextField id='outlined-required' label='Date Of Birth' variant='standard' onChange={handleDOB} defaultValue={data.dateOfBirth} />
                         <TextField id='outlined-required' label='Percentage %' variant='standard'onChange={handlePercent} defaultValue={data.Percentage} />
                         <Button onClick={updateValues}> Update and Save </Button>
                     </div>
