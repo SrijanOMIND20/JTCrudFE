@@ -4,11 +4,13 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import CustomModal from './modal/Modal';
+import DialogBox from './Dialog/DialogBox';
 
 const Home = () =>{
 
     const [studentDetails, setStudentDetails] = React.useState([]);
     const [open, setOpen] = React.useState(false);
+    const [deleteOpen, setDeleteOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);  
 
@@ -27,6 +29,10 @@ const Home = () =>{
         )
     }
 
+    const setDelete = () =>{
+        setDeleteOpen(!deleteOpen);
+    }
+
     const showAllDetails = () =>{
         setOpen(!open);
     }
@@ -40,7 +46,9 @@ const Home = () =>{
                 <Typography variant="h5" component="div" gutterBottom align='justify'>
                     List of Students:
                         <ul>
-                                {studentDetails.map((data)=><li>{data.firstName +" "+data.lastName} <Button onClick={showAllDetails}>Show all details/Edit</Button>{open && <CustomModal open={open} close={showAllDetails} data={data}/>}</li>)}
+                                {studentDetails.map((data)=><li>{data.firstName +" "+data.lastName} <Button onClick={showAllDetails}>Show all details/Edit</Button>{open && <CustomModal open={open} close={showAllDetails} data={data}/>}
+                                <Button onClick={setDelete}>Delete Info</Button> { deleteOpen &&  <DialogBox open={deleteOpen} close={setDelete} data={data}/>}
+                                </li>)}
                         </ul>
                 </Typography>
              </Box>

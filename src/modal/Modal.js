@@ -35,7 +35,7 @@ const CustomModal = ({open,close,data}) =>{
             Percentage: Percent
         }
         console.log("Body",body);
-        await axios.patch(`https://jtcrud-backend.herokuapp.com/api/update-student?id=${data._id}`,{body: body},{
+        await axios.patch(`https://jtcrud-backend.herokuapp.com/api/update-student?id=${data._id}`,{body},{
             headers: { 'Content-type': 'application/json; charset=UTF-8' }
         });
     }
