@@ -43,7 +43,7 @@ const Home = () =>{
                     Student Management System
                 </Typography>
                 <Typography variant="h5" component="div" gutterBottom>
-                    Create a student detail
+                    Create a student detail:
                     <Button onClick={setCreate}>Create Detail</Button>
                     {createOpen && <CreateStudent open={createOpen} close={setCreate} />}
                 </Typography><hr />
