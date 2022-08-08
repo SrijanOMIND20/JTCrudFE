@@ -9,10 +9,11 @@ import { useRef } from 'react';
 
 const CustomModal = ({open,close,data}) =>{
 
-    const FirstName = useRef(null);
-    const LastName = useRef(null);
-    const DOB = useRef(null);
-    const Percent = useRef(null);
+    const [Firstname,setFirstName] = React.useState("");
+    const [LastName,setLastName] = React.useState("");
+    const [DOB,setDOB] = React.useState("");
+    const [Percent,setPercent] = React.useState("");
+    const [id,setId] = React.useState("");
 
     const style = {
         position: 'absolute',
@@ -28,14 +29,31 @@ const CustomModal = ({open,close,data}) =>{
 
     const updateValues = async () =>{
         const body={
-            firstName: FirstName.current.value,
-            lastName: LastName.current.value,
-            dateOfBirth: DOB.current.value,
-            Percentage: Percent.current.value
+            firstName: Firstname,
+            lastName: LastName,
+            dateOfBirth: DOB,
+            Percentage: Percent
         }
         console.log("Body",body);
+        await axios.patch(`https://jtcrud-backend.herokuapp.com/api/update-student?id=${data._id}`,{body: body},{
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        });
+    }
 
-        // await axios.post
+    const handleFirstname = (e) =>{
+        setFirstName(e.target.value);
+    }
+
+    const handleLastname = (e) =>{
+        setLastName(e.target.value);
+    }
+
+    const handleDOB = (e) =>{
+        setDOB(e.target.value);
+    }
+
+    const handlePercent = (e) =>{
+        setPercent(e.target.value);
     }
 
     return(
@@ -53,10 +71,10 @@ const CustomModal = ({open,close,data}) =>{
           </Typography>
                 {
                     <div>
-                        <TextField id='outlined-required' label='First Name' variant='standard' ref={FirstName} defaultValue={data.firstName} />
-                        <TextField id='outlined-required' label='Last Name' variant='standard' ref={LastName} defaultValue={data.lastName} />
-                        <TextField id='outlined-required' label='Date Of Birth' variant='standard' ref={DOB} defaultValue={data.dateOfBirth} />
-                        <TextField id='outlined-required' label='Percentage %' variant='standard' ref={Percent} defaultValue={data.Percentage} />
+                        <TextField id='outlined-required' label='First Name' variant='standard' onChange={handleFirstname} defaultValue={data.firstName} />
+                        <TextField id='outlined-required' label='Last Name' variant='standard' onChange={handleLastname} defaultValue={data.lastName} />
+                        <TextField id='outlined-required' label='Date Of Birth' variant='standard' onChange={handleDOB} defaultValue={data.dateOfBirth} />
+                        <TextField id='outlined-required' label='Percentage %' variant='standard'onChange={handlePercent} defaultValue={data.Percentage} />
                         <Button onClick={updateValues}> Update and Save </Button>
                     </div>
                 }
@@ -65,5 +83,6 @@ const CustomModal = ({open,close,data}) =>{
     </div>
     )
 }
+
 
 export default CustomModal;
