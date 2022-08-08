@@ -46,7 +46,8 @@ const Home = () =>{
                 <Typography variant="h5" component="div" gutterBottom align='justify'>
                     List of Students:
                         <ul>
-                                {studentDetails.map((data)=><li>{data.firstName +" "+data.lastName} <Button onClick={showAllDetails}>Show all details/Edit</Button>{open && <CustomModal open={open} close={showAllDetails} data={data}/>}
+                                {studentDetails.map((data)=><li>
+                                {data.firstName +" "+data.lastName}<Button onClick={showAllDetails}>Show all details/Edit</Button>{open && <CustomModal open={open} close={showAllDetails} data={data} firstname={data.firstName} lastName={data.lastName} date={data.dateOfBirth}/>}
                                 <Button onClick={setDelete}>Delete Info</Button> { deleteOpen &&  <DialogBox open={deleteOpen} close={setDelete} data={data}/>}
                                 </li>)}
                         </ul>

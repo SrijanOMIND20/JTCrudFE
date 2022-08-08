@@ -25,7 +25,7 @@ const DialogBox = ({open,close,data}) => {
         onClose={close}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-      >
+        >
         <DialogTitle id="alert-dialog-title">
           {"Are you sure you want to delete the data?"}
         </DialogTitle>
